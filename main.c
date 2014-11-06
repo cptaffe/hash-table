@@ -16,10 +16,10 @@ int main(int argc, char *argv[]) {
 		ssize_t r = read(STDIN_FILENO, str, 100 * sizeof(char));
 		if (r == 0) {break;}
 		str[r - 1] = '\0';
-		int64_t h = hash(str);
+		uint64_t h = hash(str);
 		while (arr[h % m] != NULL) {h++;}
 		arr[h % m] = str;
-		printf("'%s' -> %llu\n", str, h % m);
+		// printf("'%s' -> %llu\n", str, h % m);
 	}
 
 	for (int i = 0; i < m; i++) {
