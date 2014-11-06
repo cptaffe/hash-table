@@ -9,12 +9,22 @@ int main(int argc, char *argv[]) {
 
 	int m = atoi(argv[1]); // bucket size
 
-	size_t size = 100 * sizeof(char);
-	char *str = malloc(size);
+	char **arr = calloc(sizeof(char *), m);
 
-	ssize_t r;
-	while ((r = read(STDIN_FILENO, str, size)) != 0) {
+	while (1) {
+		char *str = malloc(100 * sizeof(char));
+		ssize_t r = read(STDIN_FILENO, str, 100 * sizeof(char));
+		if (r == 0) {break;}
 		str[r - 1] = '\0';
-		printf("'%s' -> %llu\n", str, hash(str) % m);
+		int64_t h = hash(str);
+		while (arr[h % m] != NULL) {h++;}
+		arr[h % m] = str;
+		printf("'%s' -> %llu\n", str, h % m);
+	}
+
+	for (int i = 0; i < m; i++) {
+		if (arr[i] != NULL) {
+			printf("entry %d -> '%s'\n", i, arr[i]);
+		}
 	}
 }
