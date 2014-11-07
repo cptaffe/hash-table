@@ -4,7 +4,8 @@
 
 // linked list of tables
 struct table {
-	char *str; // data indexing by
+	char *str; // indexing string
+	void *data; // data indexed.
 	struct table *next;
 };
 
