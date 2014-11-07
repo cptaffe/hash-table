@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "hash.h"
+#include "table.h"
 
 int main(int argc, char *argv[]) {
 
@@ -9,7 +10,7 @@ int main(int argc, char *argv[]) {
 
 	int m = atoi(argv[1]); // bucket size
 
-	char **arr = calloc(sizeof(char *), m);
+	table **arr = calloc(sizeof(table *), m);
 
 	while (1) {
 		char *str = malloc(100 * sizeof(char));
@@ -17,14 +18,13 @@ int main(int argc, char *argv[]) {
 		if (r == 0) {break;}
 		str[r - 1] = '\0';
 		uint64_t h = hash(str);
-		while (arr[h % m] != NULL) {h++;}
-		arr[h % m] = str;
-		// printf("'%s' -> %llu\n", str, h % m);
+		arr[h % m] = table_add(arr[h % m], table_init(str));
+		printf("'%s' -> %llu\n", str, h % m);
 	}
 
 	for (int i = 0; i < m; i++) {
 		if (arr[i] != NULL) {
-			printf("entry %d -> '%s'\n", i, arr[i]);
+			printf("entry %d -> %s\n", i, table_list(arr[i]));
 		}
 	}
 }

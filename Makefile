@@ -1,8 +1,8 @@
 
 CFLAGS = -g
 
-OBJ = hash.o main.o
-HDR = hash.h
+OBJ = hash.o main.o table.o
+HDR = hash.h table.h
 BIN = hash
 
 all: $(OBJ)
