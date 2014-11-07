@@ -5,14 +5,14 @@
 #include "dict.h"
 #include "hash.h"
 
-dict *dict_init(ssize_t sz) {
+dict *dict_init(size_t sz) {
 	dict *d = malloc(sizeof(dict));
 	d->sz = sz;
 	d->arr = calloc(sizeof(table *), sz);
 	return d;
 }
 
-ssize_t dict_add(dict *d, char *str, void *data) {
+size_t dict_add(dict *d, char *str, void *data) {
 	uint64_t h = hash(str) % d->sz;
 	table *t = table_init(str);
 	t->data = data;

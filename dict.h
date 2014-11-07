@@ -6,12 +6,12 @@
 
 typedef struct {
 	table **arr; // table array
-	ssize_t sz;
+	size_t sz;
 } dict;
 
-dict *dict_init(ssize_t sz);
+dict *dict_init(size_t sz);
 
-ssize_t dict_add(dict *d, char *str, void *data);
+size_t dict_add(dict *d, char *str, void *data);
 
 void dict_rm(dict *d, char *str);
 

@@ -1,5 +1,5 @@
 
-CFLAGS = -g
+CFLAGS = -g --std=c11
 
 OBJ = hash.o main.o table.o dict.o
 HDR = hash.h table.h dict.h
