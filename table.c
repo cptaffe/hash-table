@@ -30,6 +30,28 @@ table *table_add(table *tab, table *new) {
 	return otab; // return original ptr
 }
 
+// looks through table for correct entry,
+// returns entry if found, NULL if does not exist.
+table *table_rm(table **tab, char *key) {
+	if (strcmp((*tab)->str, key) == 0) {
+		table *t = *tab;
+		*tab = (*tab)->next;
+		return t;
+	}
+	if ((*tab)->next == NULL) {return NULL;}
+	while (strcmp((*tab)->next->str, key) != 0) {
+		if ((*tab)->next->next != NULL)  {
+			tab = &(*tab)->next;
+		} else {
+			return NULL; // exit loop, entry does not exist.
+		}
+	}
+
+	table *t = (*tab)->next;
+	(*tab)->next = (*tab)->next->next;
+	return t;
+}
+
 // returns formatted string listing table
 char *table_list(table *tab) {
 	char *str = calloc(sizeof(char), 100);
@@ -47,4 +69,12 @@ table *table_init(char *str) {
 	table *tab = calloc(1, sizeof(table));
 	tab->str = str;
 	return tab;
+}
+
+// destroys table entry, returns data
+void *table_destroy(table *t) {
+	free(t->str);
+	void *data = t->data;
+	free(t);
+	return data;
 }

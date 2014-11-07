@@ -1,8 +1,8 @@
 
 // Hash header
 
-#ifndef HASH_H_
-#define HASH_H_
+#ifndef DICT_HASH_H_
+#define DICT_HASH_H_
 
 #include <stdint.h> // int64_t
 

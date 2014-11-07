@@ -1,8 +1,8 @@
 
 CFLAGS = -g
 
-OBJ = hash.o main.o table.o
-HDR = hash.h table.h
+OBJ = hash.o main.o table.o dict.o
+HDR = hash.h table.h dict.h
 BIN = hash
 
 all: $(OBJ)
