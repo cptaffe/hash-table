@@ -5,7 +5,7 @@
 #include "dict.h"
 #include "hash.h"
 
-dict *dict_init(ssize_t sz) {
+dict *dict_init(size_t sz) {
 	dict *d = malloc(sizeof(dict));
 	d->sz = sz;
 	d->arr = calloc(sizeof(table *), sz);
