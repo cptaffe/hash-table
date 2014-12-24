@@ -11,7 +11,7 @@ typedef struct {
 
 dict *dict_init(ssize_t sz);
 
-ssize_t dict_add(dict *d, char *str, void *data);
+ssize_t dict_add(dict *d, char *str);
 
 void dict_rm(dict *d, char *str);
 

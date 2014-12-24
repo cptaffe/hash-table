@@ -21,13 +21,8 @@ table *table_get(table *tab, char *key) {
 // adds table as the next of the last node in the list.
 // if tab is NULL, returns new.
 table *table_add(table *tab, table *new) {
-	if (tab == NULL) {return new;}
-	table *otab = tab;
-	while (tab->next != NULL) {
-		tab = tab->next;
-	}
-	tab->next = new;
-	return otab; // return original ptr
+	new->next = tab;
+	return new;
 }
 
 // looks through table for correct entry,

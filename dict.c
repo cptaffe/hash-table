@@ -12,10 +12,9 @@ dict *dict_init(ssize_t sz) {
 	return d;
 }
 
-ssize_t dict_add(dict *d, char *str, void *data) {
+ssize_t dict_add(dict *d, char *str) {
 	uint64_t h = hash(str) % d->sz;
 	table *t = table_init(str);
-	t->data = data;
 	d->arr[h] = table_add(d->arr[h], t);
 	return h;
 }
