@@ -2,6 +2,8 @@
 #ifndef DICT_H_
 #define DICT_H_
 
+#include <unistd.h>
+
 #include "table.h"
 
 typedef struct {
